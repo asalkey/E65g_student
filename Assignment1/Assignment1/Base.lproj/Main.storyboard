@@ -77,7 +77,42 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wRX-Ib-Qso" userLabel="top-blue">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="249.5"/>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qca-Nk-soQ" userLabel="Generation">
+                                                <rect key="frame" x="104" y="77" width="97" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="97" id="vpd-8H-n3r"/>
+                                                </constraints>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Xgz-Wi-oJh" userLabel="Grid Size">
+                                                <rect key="frame" x="101" y="115" width="118" height="31"/>
+                                            </slider>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r57-eg-IMh" userLabel="Reset">
+                                                <rect key="frame" x="137" y="200" width="46" height="30"/>
+                                                <state key="normal" title="Button"/>
+                                            </button>
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="6zz-34-4NH" userLabel="Frames/second">
+                                                <rect key="frame" x="102" y="153" width="118" height="31"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="114" id="0M4-wo-s6z"/>
+                                                </constraints>
+                                            </slider>
+                                        </subviews>
                                         <color key="backgroundColor" red="0.49905855343312711" green="0.86749942393322788" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="6zz-34-4NH" firstAttribute="centerX" secondItem="r57-eg-IMh" secondAttribute="centerX" constant="1" id="8sq-EV-6nt"/>
+                                            <constraint firstItem="r57-eg-IMh" firstAttribute="centerY" secondItem="wRX-Ib-Qso" secondAttribute="centerY" constant="90" id="QTH-2E-X5c"/>
+                                            <constraint firstItem="Xgz-Wi-oJh" firstAttribute="centerY" secondItem="wRX-Ib-Qso" secondAttribute="centerY" constant="5" id="UEz-if-ea1"/>
+                                            <constraint firstItem="qca-Nk-soQ" firstAttribute="centerY" secondItem="wRX-Ib-Qso" secondAttribute="centerY" constant="-33" id="XiA-TH-C86"/>
+                                            <constraint firstItem="6zz-34-4NH" firstAttribute="centerY" secondItem="wRX-Ib-Qso" secondAttribute="centerY" constant="43" id="fiW-b0-ybx"/>
+                                            <constraint firstItem="6zz-34-4NH" firstAttribute="leading" secondItem="Xgz-Wi-oJh" secondAttribute="leading" constant="1" id="jLW-HW-kSj"/>
+                                            <constraint firstItem="qca-Nk-soQ" firstAttribute="leading" secondItem="wRX-Ib-Qso" secondAttribute="leading" constant="104" id="saN-Jk-Gqg"/>
+                                            <constraint firstItem="6zz-34-4NH" firstAttribute="centerX" secondItem="wRX-Ib-Qso" secondAttribute="centerX" constant="1" id="wis-Rk-Rwt"/>
+                                            <constraint firstItem="6zz-34-4NH" firstAttribute="trailing" secondItem="Xgz-Wi-oJh" secondAttribute="trailing" constant="1" id="zne-oD-YIV"/>
+                                        </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="10"/>
