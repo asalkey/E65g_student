@@ -26,8 +26,6 @@ import UIKit
     
     @IBInspectable var gridWidth = CGFloat(2.0)
     
-    var xgrid = [[Bool]](repeating: [Bool](repeating: false, count: 3), count: 3)
-    
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation. */
@@ -95,6 +93,47 @@ import UIKit
         gridColor.setStroke()
         path.stroke()
     }
- 
-
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        lastTouchedPosition = process(touches: touches)
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        lastTouchedPosition = process(touches: touches)
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        lastTouchedPosition = nil
+    }
+    
+    typealias Position = (row: Int, col: Int)
+    var lastTouchedPosition: Position?
+    
+    func process(touches: Set<UITouch>) -> Position? {
+        guard touches.count == 1 else { return nil }
+        let pos = convert(touch: touches.first!)
+        guard lastTouchedPosition?.row != pos.row
+            || lastTouchedPosition?.col != pos.col
+            else { return pos }
+        
+        grid[pos] = grid[pos].toggle(value: grid[pos])
+        setNeedsDisplay()
+        return pos
+    }
+    
+    func convert(touch: UITouch) -> Position {
+        let touchY = touch.location(in: self).y
+        let gridHeight = frame.size.height
+        let row = touchY / gridHeight * CGFloat(self.size)
+        let touchX = touch.location(in: self).x
+        let gridWidth = frame.size.width
+        let col = touchX / gridWidth * CGFloat(self.size)
+        let position = (row: Int(row), col: Int(col))
+        return position
+    }
+    
+    func next(){
+        grid = grid.next()
+        setNeedsDisplay()
+    }
 }
