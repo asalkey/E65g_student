@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  Lecture1
+//  Assignment2
 //
 //  Created by Van Simmons on 1/15/17.
 //  Copyright © 2017 Harvard Division of Continuing Education. All rights reserved.
