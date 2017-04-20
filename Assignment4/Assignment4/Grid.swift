@@ -1,6 +1,9 @@
 //
 //  Grid.swift
 //
+
+import Foundation
+
 public typealias GridPosition = (row: Int, col: Int)
 public typealias GridSize = (rows: Int, cols: Int)
 
@@ -15,6 +18,10 @@ public enum CellState {
         default: return false
         }
     }
+}
+
+public protocol GridViewDataSource {
+    subscript (row: Int, col: Int) -> CellState { get set }
 }
 
 public protocol GridProtocol {
@@ -68,7 +75,7 @@ extension GridProtocol {
     }
 }
 
-public struct Grid: GridProtocol {
+public struct Grid: GridProtocol,GridViewDataSource {
     private var _cells: [[CellState]]
     public let size: GridSize
 
@@ -139,5 +146,73 @@ public extension Grid {
         case (0, 1), (1, 2), (2, 0), (2, 1), (2, 2): return .alive
         default: return .empty
         }
+    }
+}
+
+protocol EngineDelegate {
+    func engineDidUpdate(withGrid: GridProtocol)
+}
+
+protocol EngineProtocol {
+    var delegate: EngineDelegate? { get set }
+    var refreshRate: Double { get set }
+    var refreshTimer: Timer? { get set }
+    var rows: Int { get }
+    var cols: Int { get }
+    init(rows: Int, cols: Int)
+    
+    func step() -> GridProtocol
+    
+}
+
+class StandardEngine: EngineProtocol {
+    
+    var grid: GridProtocol
+    var delegate: EngineDelegate?
+    var rows: Int
+    var cols: Int
+    
+    private static var engine: StandardEngine = StandardEngine(rows: 10, cols: 10)
+    
+    var refreshTimer: Timer?
+    var refreshRate: Double = 0.0  {
+        didSet {
+            if refreshRate > 0.0 {
+                 refreshTimer = Timer.scheduledTimer(
+                    withTimeInterval: refreshRate,
+                    repeats: true
+                ) { (t: Timer) in
+                    _ = self.step()
+                }
+            }
+            else {
+                refreshTimer?.invalidate()
+                refreshTimer = nil
+            }
+        }
+    }
+    
+    required init(rows: Int, cols: Int) {
+        self.rows = rows
+        self.cols = cols
+        self.grid = Grid(rows, cols, cellInitializer: { _,_ in .empty })
+        delegate?.engineDidUpdate(withGrid: self.grid)
+    }
+    
+    func step() -> GridProtocol {
+        let newGrid = grid.next()
+        grid = newGrid
+        delegate?.engineDidUpdate(withGrid: grid)
+        let nc = NotificationCenter.default
+        let name = Notification.Name(rawValue: "EngineUpdate")
+        let n = Notification(name: name,
+                    object: nil,
+                    userInfo: ["engine" : self])
+        nc.post(n)
+        return grid
+    }
+    
+    static func getEngine() -> StandardEngine {
+        return StandardEngine.engine
     }
 }

@@ -8,39 +8,41 @@
 
 import UIKit
 
-@IBDesignable class GridView: UIView {
+@IBDesignable class GridView: UIView,GridViewDataSource {
+    @IBInspectable var rows: Int = 10
+    @IBInspectable var cols: Int = 10
     
-    @IBInspectable var size: Int = 20 {
-        didSet {
-            grid = Grid(size,size)
-        }
-    }
-    
-    var grid = Grid(20, 20)
+    var gridDataSource : GridViewDataSource?
     
     @IBInspectable var livingColor = UIColor.black
-    @IBInspectable var emptyColor = UIColor.green
+    @IBInspectable var emptyColor = UIColor.white
     @IBInspectable var bornColor = UIColor.red
     @IBInspectable var gridColor = UIColor.blue
     @IBInspectable var diedColor = UIColor.yellow
     
     @IBInspectable var gridWidth = CGFloat(2.0)
     
+    public subscript (row: Int, col: Int) -> CellState {
+        get {return gridDataSource![row,col]}
+        set {gridDataSource?[row,col] = newValue}
+    }
+    
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation. */
     
     override func draw(_ rect: CGRect) {
+        
         let gsize = CGSize(
-            width: rect.size.width / CGFloat(self.size),
-            height: rect.size.height / CGFloat(self.size)
+            width: rect.size.width / CGFloat(self.cols),
+            height: rect.size.height / CGFloat(self.rows)
         )
         
         let base = rect.origin
         
         /*circles*/
-        (0 ..< self.size).forEach { i in
-            (0 ..< self.size).forEach { j in
+        (0 ..< self.cols).forEach { i in
+            (0 ..< self.rows).forEach { j in
                 let origin = CGPoint(
                     x: base.x + (CGFloat(j) * gsize.width),
                     y: base.y + (CGFloat(i) * gsize.height)
@@ -52,15 +54,17 @@ import UIKit
                 
                 let path = UIBezierPath(ovalIn: subRect)
                 
-                switch grid[(i, j)] {
-                case .alive:
+                if let grid = gridDataSource {
+                 switch grid[(i, j)] {
+                  case .alive:
                     livingColor.setFill()
-                case .empty:
+                  case .empty:
                     emptyColor.setFill()
-                case .born:
+                  case .born:
                     bornColor.setFill()
-                case .died:
+                  case .died:
                     diedColor.setFill()
+                 }
                 }
                 
                 path.fill()
@@ -68,15 +72,29 @@ import UIKit
         }
         
         /*lines*/
-        (0 ..< self.size + 1).forEach {
+        (0 ... self.cols + 1).forEach {
             drawLine(
-                start: CGPoint(x: CGFloat($0)/CGFloat(self.size) * rect.size.width, y: 0.0),
-                end:   CGPoint(x: CGFloat($0)/CGFloat(self.size) * rect.size.width, y: rect.size.height)
+                start: CGPoint(
+                    x: rect.origin.x,
+                    y: rect.origin.y + (gsize.height * CGFloat($0))
+                ),
+                end: CGPoint(
+                    x: rect.origin.x + rect.size.width,
+                    y: rect.origin.y + (gsize.height * CGFloat($0))
+                )
             )
-            
+        }
+        
+        (0 ... self.rows).forEach {
             drawLine(
-                start: CGPoint(x: 0.0, y: CGFloat($0)/CGFloat(self.size) * rect.size.height ),
-                end: CGPoint(x: rect.size.width, y: CGFloat($0)/CGFloat(self.size) * rect.size.height)
+                start: CGPoint(
+                    x: rect.origin.x + (gsize.width * CGFloat($0)),
+                    y: rect.origin.y
+                ),
+                end: CGPoint(
+                    x: rect.origin.x + (gsize.width * CGFloat($0)),
+                    y: rect.origin.y + rect.size.height
+                )
             )
         }
     }
@@ -116,24 +134,24 @@ import UIKit
             || lastTouchedPosition?.col != pos.col
             else { return pos }
         
-        grid[pos] = grid[pos].toggle(value: grid[pos])
-        setNeedsDisplay()
+        if gridDataSource != nil {
+            gridDataSource![pos.row, pos.col] = gridDataSource![pos.row, pos.col].isAlive ? .empty : .alive
+            setNeedsDisplay()
+        }
+        
         return pos
     }
     
     func convert(touch: UITouch) -> Position {
         let touchY = touch.location(in: self).y
         let gridHeight = frame.size.height
-        let row = touchY / gridHeight * CGFloat(self.size)
+        let row = touchY / gridHeight * CGFloat(self.rows)
         let touchX = touch.location(in: self).x
         let gridWidth = frame.size.width
-        let col = touchX / gridWidth * CGFloat(self.size)
+        let col = touchX / gridWidth * CGFloat(self.cols)
         let position = (row: Int(row), col: Int(col))
         return position
     }
     
-    func next(){
-        grid = grid.next()
-        setNeedsDisplay()
-    }
+
 }
