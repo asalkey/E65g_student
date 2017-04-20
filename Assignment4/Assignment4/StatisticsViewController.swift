@@ -1,0 +1,29 @@
+//
+//  StatisticsViewController.swift
+//  Assignment4
+//
+//  Created by Andy on 4/17/17.
+//  Copyright © 2017 Harvard Division of Continuing Education. All rights reserved.
+//
+
+import UIKit
+
+class StatisticsViewController: UIViewController {
+    
+    @IBOutlet weak var aliveCounter: UILabel!
+    @IBOutlet weak var emptyCounter: UILabel!
+    @IBOutlet weak var bornCounter: UILabel!
+    @IBOutlet weak var diedCounter: UILabel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
+}
