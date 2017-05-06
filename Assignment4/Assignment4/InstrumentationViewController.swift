@@ -16,10 +16,13 @@ class InstrumentationViewController: UIViewController {
     @IBOutlet weak var refreshSlider: UISlider!
     @IBOutlet weak var refreshSwitch: UISwitch!
     
+
     var engine: StandardEngine!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        engine = StandardEngine.getEngine()
+        
         // Do any additional setup after loading the view, typically from a nib.
         rowsStepper.value = Double(engine.rows)
         colsStepper.value = Double(engine.cols)
@@ -32,13 +35,53 @@ class InstrumentationViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+    @IBAction func rowsEditingEndedOnExit(_ sender: UITextField) {
+        guard let text = sender.text else { return }
+        guard let val = Int(text) else {
+            showErrorAlert(withMessage: "Invalid value: \(text), please try again.") {
+                sender.text = "\(self.engine.rows)"
+            }
+            return
+        }
+        
+        rowsStepper.value = Double(val)
+        engine.updateGridSize(rows: val, cols: val)
+    }
     
-    @IBAction func gridSize(_ sender: UIStepper) {
+    @IBAction func colsEditingEndedOnExit(_ sender: UITextField) {
+        guard let text = sender.text else { return }
+        guard let val = Int(text) else {
+            showErrorAlert(withMessage: "Invalid value: \(text), please try again.") {
+                sender.text = "\(self.engine.cols)"
+            }
+            return
+        }
+        
+        colsStepper.value = Double(val)
+        engine.updateGridSize(rows: val, cols: val)
+    }
+
+    @IBAction func rowSize(_ sender: UIStepper) {
         let rows = Int(sender.value)
         let cols = Int(sender.value)
         engine.updateGridSize(rows: rows, cols: cols)
         rowsText.text = "\(rows)"
         colsText.text = "\(cols)"
+    }
+    
+    func showErrorAlert(withMessage msg:String, action: (() -> Void)? ) {
+        let alert = UIAlertController(
+            title: "Alert",
+            message: msg,
+            preferredStyle: .alert
+        )
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            alert.dismiss(animated: true) { }
+            OperationQueue.main.addOperation { action?() }
+        }
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
     }
     
 

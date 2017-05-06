@@ -42,6 +42,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="rowsEditingEndedOnExit:" destination="9pv-A4-QxB" eventType="editingDidEnd" id="0MN-Gg-vuO"/>
+                                </connections>
                             </textField>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minimumValue="10" maximumValue="100" stepValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="soE-Zg-aOG">
                                 <rect key="frame" x="184" y="67" width="94" height="29"/>
@@ -49,6 +52,9 @@
                                     <constraint firstAttribute="height" constant="29" id="HtK-jD-2QY"/>
                                     <constraint firstAttribute="width" constant="94" id="zfc-sb-l8f"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="rowSize:" destination="9pv-A4-QxB" eventType="valueChanged" id="pNY-lE-E9W"/>
+                                </connections>
                             </stepper>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g0O-ov-Jo2">
                                 <rect key="frame" x="16" y="134" width="148" height="30"/>
@@ -59,6 +65,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="colsEditingEndedOnExit:" destination="9pv-A4-QxB" eventType="editingDidEnd" id="5yN-ZY-vYh"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="number of columns" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="alN-Vj-qym">
                                 <rect key="frame" x="16" y="105" width="148" height="21"/>

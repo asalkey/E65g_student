@@ -13,12 +13,17 @@ class SimulationViewController: UIViewController, GridViewDataSource, EngineDele
     @IBOutlet weak var gridView: GridView!
     
     var engine: StandardEngine!
+    var delegate: EngineDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ///engine = StandardEngine.getEngine()
+        engine = StandardEngine.getEngine()
         engine.delegate = self
         gridView.gridDataSource = self
+        
+        self.gridView.rows = engine.rows
+        self.gridView.cols = engine.cols
+        gridView.setNeedsDisplay()
         
         let nc = NotificationCenter.default
         let name = Notification.Name(rawValue: "EngineUpdate")
@@ -32,6 +37,8 @@ class SimulationViewController: UIViewController, GridViewDataSource, EngineDele
     }
     
     func engineDidUpdate(withGrid: GridProtocol) {
+        self.gridView.rows = engine.rows
+        self.gridView.cols = engine.cols
         self.gridView.setNeedsDisplay()
     }
     
