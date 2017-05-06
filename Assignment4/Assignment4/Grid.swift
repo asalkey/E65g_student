@@ -157,10 +157,8 @@ protocol EngineProtocol {
     var delegate: EngineDelegate? { get set }
     var refreshRate: Double { get set }
     var refreshTimer: Timer? { get set }
-    var rows: Int { get }
-    var cols: Int { get }
-    init(rows: Int, cols: Int)
-    
+    var rows: Int { get set}
+    var cols: Int { get set}
     func step() -> GridProtocol
     
 }
@@ -210,6 +208,13 @@ class StandardEngine: EngineProtocol {
                     userInfo: ["engine" : self])
         nc.post(n)
         return grid
+    }
+    
+    func updateGridSize(rows: Int, cols: Int) {
+        self.grid = Grid(rows, cols, cellInitializer: { _,_ in .empty})
+        self.rows = rows
+        self.cols = cols
+        delegate?.engineDidUpdate(withGrid: self.grid)
     }
     
     static func getEngine() -> StandardEngine {

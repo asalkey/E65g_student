@@ -16,7 +16,7 @@ class SimulationViewController: UIViewController, GridViewDataSource, EngineDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        engine = StandardEngine.getEngine()
+        ///engine = StandardEngine.getEngine()
         engine.delegate = self
         gridView.gridDataSource = self
         

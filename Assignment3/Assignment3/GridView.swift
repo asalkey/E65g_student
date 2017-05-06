@@ -15,7 +15,7 @@ import UIKit
     var gridDataSource : GridViewDataSource?
     
     @IBInspectable var livingColor = UIColor.black
-    @IBInspectable var emptyColor = UIColor.white
+    @IBInspectable var emptyColor = UIColor.green
     @IBInspectable var bornColor = UIColor.red
     @IBInspectable var gridColor = UIColor.blue
     @IBInspectable var diedColor = UIColor.yellow
