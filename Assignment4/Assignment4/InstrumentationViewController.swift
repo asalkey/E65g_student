@@ -9,6 +9,7 @@
 import UIKit
 
 class InstrumentationViewController: UIViewController {
+   
     @IBOutlet weak var rowsText: UITextField!
     @IBOutlet weak var rowsStepper: UIStepper!
     @IBOutlet weak var colsText: UITextField!
@@ -22,13 +23,31 @@ class InstrumentationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         engine = StandardEngine.getEngine()
-        
+        refreshSwitch.setOn(false, animated: false)
         // Do any additional setup after loading the view, typically from a nib.
         rowsStepper.value = Double(engine.rows)
         colsStepper.value = Double(engine.cols)
         
         rowsText.text = "\(engine.rows)"
         colsText.text = "\(engine.cols)"
+    }
+
+    @IBAction func refreshSwitch(_ sender: UISwitch) {
+        if sender.isOn {
+            engine.refreshRate = Double(refreshSlider.value)
+        } else {
+            engine.refreshRate = 0.0
+        }
+    }
+    
+    @IBAction func refreshSlider(_ sender: UISlider) {
+        if refreshSwitch.isOn {
+            engine.refreshRate = 0.0
+            engine.refreshRate = Double(refreshSlider.value)
+        }
+        else {
+            engine.refreshRate = 0.0
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,6 +86,12 @@ class InstrumentationViewController: UIViewController {
         let cols = Int(sender.value)
         engine.updateGridSize(rows: rows, cols: cols)
         rowsText.text = "\(rows)"
+    }
+    
+    @IBAction func colSize(_ sender: UIStepper) {
+        let rows = Int(sender.value)
+        let cols = Int(sender.value)
+        engine.updateGridSize(rows: rows, cols: cols)
         colsText.text = "\(cols)"
     }
     
