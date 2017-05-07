@@ -155,6 +155,7 @@ protocol EngineDelegate {
 
 protocol EngineProtocol {
     var delegate: EngineDelegate? { get set }
+    var grid: GridProtocol { get set }
     var refreshRate: Double { get set }
     var refreshTimer: Timer? { get set }
     var rows: Int { get set}
@@ -170,7 +171,7 @@ class StandardEngine: EngineProtocol {
     var rows: Int
     var cols: Int
     
-    private static var engine: StandardEngine = StandardEngine(rows: 10, cols: 10)
+    static var engine: StandardEngine = StandardEngine(rows: 10, cols: 10)
     
     var refreshTimer: Timer?
     var refreshRate: Double = 0.0  {
