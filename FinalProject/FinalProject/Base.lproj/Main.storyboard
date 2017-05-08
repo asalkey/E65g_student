@@ -14,7 +14,7 @@
         <!--Instrumentation-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController id="9pv-A4-QxB" userLabel="Instrumentation" customClass="InstrumentationViewController" customModule="Assignment4" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9pv-A4-QxB" userLabel="Instrumentation" customClass="InstrumentationViewController" customModule="FinalProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
@@ -27,7 +27,6 @@
                                 <rect key="frame" x="16" y="38" width="120" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="82X-rs-722"/>
-                                    <constraint firstAttribute="width" constant="120" id="g1x-8T-Ul0"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -36,7 +35,6 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fvb-hA-6pM">
                                 <rect key="frame" x="16" y="67" width="148" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="148" id="H7a-Tr-DiE"/>
                                     <constraint firstAttribute="height" constant="30" id="WNq-yi-GJE"/>
                                 </constraints>
                                 <nil key="textColor"/>
@@ -50,7 +48,6 @@
                                 <rect key="frame" x="184" y="67" width="94" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="29" id="HtK-jD-2QY"/>
-                                    <constraint firstAttribute="width" constant="94" id="zfc-sb-l8f"/>
                                 </constraints>
                                 <connections>
                                     <action selector="rowSize:" destination="9pv-A4-QxB" eventType="valueChanged" id="pNY-lE-E9W"/>
@@ -60,7 +57,6 @@
                                 <rect key="frame" x="16" y="134" width="148" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Zsj-aK-UjU"/>
-                                    <constraint firstAttribute="width" constant="148" id="rqC-Yo-Adf"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -73,7 +69,6 @@
                                 <rect key="frame" x="16" y="105" width="148" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="4En-qN-NjJ"/>
-                                    <constraint firstAttribute="width" constant="148" id="CLi-kh-eml"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -82,7 +77,6 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="refresh rate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ylb-FA-hzV">
                                 <rect key="frame" x="16" y="172" width="89" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="89" id="BGj-Kp-mzY"/>
                                     <constraint firstAttribute="height" constant="21" id="YUC-aR-ibG"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -93,7 +87,6 @@
                                 <rect key="frame" x="14" y="201" width="266" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="EdQ-s7-WKb"/>
-                                    <constraint firstAttribute="width" constant="262" id="kCj-ej-jSJ"/>
                                 </constraints>
                                 <connections>
                                     <action selector="refreshSlider:" destination="9pv-A4-QxB" eventType="valueChanged" id="NHs-9V-ixP"/>
@@ -103,7 +96,6 @@
                                 <rect key="frame" x="16" y="268" width="51" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="8Tn-Ed-jIb"/>
-                                    <constraint firstAttribute="width" constant="49" id="Df8-RX-fyT"/>
                                 </constraints>
                                 <connections>
                                     <action selector="refreshSwitch:" destination="9pv-A4-QxB" eventType="valueChanged" id="Nbq-87-dnd"/>
@@ -113,7 +105,6 @@
                                 <rect key="frame" x="16" y="239" width="114" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="3qu-C7-aFV"/>
-                                    <constraint firstAttribute="width" constant="114" id="Bxj-8O-QAv"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -179,7 +170,7 @@
         <!--Simulation-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController id="8rJ-Kc-sve" userLabel="Simulation" customClass="SimulationViewController" customModule="Assignment4" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8rJ-Kc-sve" userLabel="Simulation" customClass="SimulationViewController" customModule="FinalProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
@@ -188,7 +179,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pbd-tq-AZp" customClass="GridView" customModule="Assignment4" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pbd-tq-AZp" customClass="GridView" customModule="FinalProject" customModuleProvider="target">
                                 <rect key="frame" x="67.5" y="213.5" width="240" height="240"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -240,7 +231,7 @@
         <!--Statistics-->
         <scene sceneID="gSr-t7-NYK">
             <objects>
-                <viewController id="0VX-z5-bUj" userLabel="Statistics" customClass="StatisticsViewController" customModule="Assignment4" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="0VX-z5-bUj" userLabel="Statistics" customClass="StatisticsViewController" customModule="FinalProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2xm-0a-6dy"/>
                         <viewControllerLayoutGuide type="bottom" id="HM0-77-agj"/>
