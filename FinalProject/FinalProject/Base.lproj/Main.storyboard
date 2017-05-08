@@ -128,12 +128,21 @@
                                 <rect key="frame" x="0.0" y="351" width="375" height="267"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Jqe-ix-lel">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="basic" id="Jqe-ix-lel" userLabel="basic">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jqe-ix-lel" id="Ocs-Eh-w0K">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jy4-HE-fcp">
+                                                    <rect key="frame" x="8" y="12" width="359" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="vLj-sd-lgZ" kind="show" id="h3Z-EA-ET0"/>
@@ -187,6 +196,7 @@
                     <connections>
                         <outlet property="colsStepper" destination="boK-tb-0eO" id="ZjZ-Az-GTh"/>
                         <outlet property="colsText" destination="g0O-ov-Jo2" id="nIF-HM-HHv"/>
+                        <outlet property="list" destination="e8h-gl-5pk" id="6mM-cD-iYF"/>
                         <outlet property="refreshSlider" destination="PVQ-lJ-nVY" id="YwG-Cs-mee"/>
                         <outlet property="refreshSwitch" destination="LAp-iq-bfy" id="TVu-bo-JG4"/>
                         <outlet property="rowsStepper" destination="soE-Zg-aOG" id="YV4-23-wcC"/>
