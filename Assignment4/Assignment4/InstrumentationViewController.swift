@@ -20,9 +20,11 @@ class InstrumentationViewController:  UIViewController, UITableViewDelegate, UIT
     @IBOutlet weak var refreshSlider: UISlider!
     @IBOutlet weak var refreshSwitch: UISwitch!
     @IBOutlet weak var list: UITableView!
+    @IBOutlet weak var addRow: UIButton!
     
     var titles =  [String]()
-    var gridCoordinates =  [Int:[[Int]]]()
+    var gridCoordinates =  [String:[[Int]]]()
+    var passedData = [String:[[Int]]]()
 
     var engine: StandardEngine!
     
@@ -53,17 +55,14 @@ class InstrumentationViewController:  UIViewController, UITableViewDelegate, UIT
                 return
             }
             
-            
             let jsonArray = json as! NSArray
             
             (0..<jsonArray.count).forEach { i in
-                
-            let jsonDictionary = jsonArray[i] as! NSDictionary
-            let jsonTitle = jsonDictionary["title"] as! String
-            self.titles.append(jsonTitle)
-            let jsonContents = jsonDictionary["contents"] as! [[Int]]
-            self.gridCoordinates[i] = jsonContents
-           
+                let jsonDictionary = jsonArray[i] as! NSDictionary
+                let jsonTitle = jsonDictionary["title"] as! String
+                self.titles.append(jsonTitle)
+                let jsonContents = jsonDictionary["contents"] as! [[Int]]
+                self.gridCoordinates[jsonTitle] = jsonContents
             }
             
             OperationQueue.main.addOperation {
@@ -71,6 +70,13 @@ class InstrumentationViewController:  UIViewController, UITableViewDelegate, UIT
             }
             
         }
+    }
+    
+    
+    @IBAction func addRow(_ sender: Any) {
+        self.gridCoordinates["untitled"] = [[0,0]]
+        self.titles = ["untitled"]
+        self.list.reloadData()
     }
 
     @IBAction func refreshSwitch(_ sender: UISwitch) {
@@ -173,6 +179,22 @@ class InstrumentationViewController:  UIViewController, UITableViewDelegate, UIT
             titles[indexPath.section] = newData
             tableView.deleteRows(at: [indexPath], with: .automatic)
             tableView.reloadData()
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let indexPath = list.indexPathForSelectedRow
+        if let indexPath = indexPath {
+            let key = self.titles[indexPath.item]
+            let plots = gridCoordinates[key]
+       
+            if let vc = segue.destination as? GridEditorViewController {
+                vc.plots = plots!
+                vc.saveClosure = { saveGrid in
+                    self.passedData["heyo"] = [[1]]
+                    self.list.reloadData()
+                }
+            }
         }
     }
 
