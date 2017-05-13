@@ -14,12 +14,6 @@ class StatisticsViewController: UIViewController {
     @IBOutlet weak var emptyCounter: UILabel!
     @IBOutlet weak var bornCounter: UILabel!
     @IBOutlet weak var diedCounter: UILabel!
-    @IBOutlet weak var reseet: UIButton!
-    
-    var aliveStat = 0
-    var emptyStat = 0
-    var bornStat  = 0
-    var diedStat  = 0
     
     var engine: EngineProtocol!
     var gridDataSource: GridViewDataSource?
@@ -40,6 +34,10 @@ class StatisticsViewController: UIViewController {
     }
     
     func stats(){
+        var aliveStat = 0
+        var emptyStat = 0
+        var bornStat  = 0
+        var diedStat  = 0
         engine = StandardEngine.engine
         
         (0 ..< engine.cols).forEach { i in
@@ -63,15 +61,6 @@ class StatisticsViewController: UIViewController {
         emptyCounter.text = "Empty: \(String(emptyStat))"
         bornCounter.text = "Born: \(String(bornStat))"
         diedCounter.text = "Died: \(String(diedStat))"
-    }
-    
-    
-    @IBAction func reset(_ sender: UIButton) {
-        
-        aliveCounter.text = "Alive: 0"
-        emptyCounter.text = "Empty: 0"
-        bornCounter.text = "Born: 0"
-        diedCounter.text = "Died: 0"
     }
     
     override func didReceiveMemoryWarning() {

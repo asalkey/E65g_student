@@ -162,7 +162,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="boK-tb-0eO" secondAttribute="trailing" constant="81" id="wSd-nf-vXW"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Instrumentation" image="instrumentation" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Instrumentation" image="bookmark" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="colsStepper" destination="boK-tb-0eO" id="ZjZ-Az-GTh"/>
                         <outlet property="colsText" destination="g0O-ov-Jo2" id="nIF-HM-HHv"/>
@@ -228,7 +228,7 @@
                             <constraint firstItem="pbd-tq-AZp" firstAttribute="centerY" secondItem="QS5-Rx-YEW" secondAttribute="centerY" id="cOV-8O-SDH"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Simulation" image="simulation" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Simulation" image="bomb" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="gridView" destination="pbd-tq-AZp" id="8iP-I0-U1K"/>
                     </connections>
@@ -293,7 +293,7 @@
                             <constraint firstItem="Wtk-eK-bIZ" firstAttribute="top" secondItem="2xm-0a-6dy" secondAttribute="bottom" constant="16" id="ueg-gO-XKw"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Statistics" image="stats" id="aDm-SM-pgk"/>
+                    <tabBarItem key="tabBarItem" title="Statistics" image="biohazard" id="aDm-SM-pgk"/>
                     <connections>
                         <outlet property="aliveCounter" destination="Wtk-eK-bIZ" id="ygP-45-pOk"/>
                         <outlet property="bornCounter" destination="YEO-2A-FVv" id="nIA-S4-5Kg"/>
@@ -327,8 +327,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="instrumentation" width="25" height="25"/>
-        <image name="simulation" width="25" height="25"/>
-        <image name="stats" width="25" height="24"/>
+        <image name="biohazard" width="29" height="30"/>
+        <image name="bomb" width="30" height="30"/>
+        <image name="bookmark" width="30" height="30"/>
     </resources>
 </document>
